@@ -36,7 +36,7 @@ describe('OysterCard', () => {
       gateType: 'exit'
     })
 
-    expect(oysterCard.getBalance()).toBe(30 - 2.5 - 1.8 - 2)
+    expect(oysterCard.balance).toBe(30 - 2.5 - 1.8 - 2)
   })
 
   it('throw an error if there are no founds on the card', () => {
@@ -62,9 +62,7 @@ describe('OysterCard', () => {
       station: 'Hammersmith'
     })
 
-    const balance = oysterCard.getBalance()
-
-    expect(balance).toBe(8.2)
+    expect(oysterCard.balance).toBe(8.2)
   })
 
   describe('works for a metro trip', () => {
@@ -90,9 +88,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      const balance = oysterCard.getBalance()
-
-      expect(balance).toBe(2.5)
+      expect(oysterCard.balance).toBe(2.5)
     })
 
     it('any one zone outside zone 1', () => {
@@ -117,9 +113,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      const balance = oysterCard.getBalance()
-
-      expect(balance).toBe(28)
+      expect(oysterCard.balance).toBe(28)
     })
 
     it('any two zones including zone 1', () => {
@@ -144,9 +138,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      const balance = oysterCard.getBalance()
-
-      expect(balance).toBe(27)
+      expect(oysterCard.balance).toBe(27)
     })
 
     it('any two zones excluding zone 1', () => {
@@ -171,9 +163,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      const balance = oysterCard.getBalance()
-
-      expect(balance).toBe(27.75)
+      expect(oysterCard.balance).toBe(27.75)
     })
 
     it('more than two zones (3+)', () => {
@@ -198,9 +188,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      const balance = oysterCard.getBalance()
-
-      expect(balance).toBe(26.8)
+      expect(oysterCard.balance).toBe(26.8)
     })
 
     it('from Earl’s Court to Arsenal and back', () => {
@@ -234,9 +222,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      const balance = oysterCard.getBalance()
-
-      expect(balance).toBe(26)
+      expect(oysterCard.balance).toBe(26)
     })
 
     it('charge the maxFare when the user touches the reader only during entry', () => {
@@ -255,9 +241,7 @@ describe('OysterCard', () => {
         gateType: 'entry'
       })
 
-      const balance = oysterCard.getBalance()
-
-      expect(balance).toBe(15)
+      expect(oysterCard.balance).toBe(15)
     })
 
     it('charge the maxFare when the user touches the reader only during exit', () => {
@@ -276,9 +260,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      const balance = oysterCard.getBalance()
-
-      expect(balance).toBe(40)
+      expect(oysterCard.balance).toBe(40)
     })
   })
 })

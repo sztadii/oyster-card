@@ -5,14 +5,10 @@ export class OysterCard {
   private lastTransaction?: Transaction
 
   constructor(
-    private balance: number,
+    public balance: number,
     private busService: BusService,
     private metroService: MetroService
   ) {}
-
-  public getBalance() {
-    return this.balance
-  }
 
   public touchTheReader(transaction: Transaction) {
     const transportationService = {
