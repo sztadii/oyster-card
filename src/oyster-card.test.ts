@@ -40,7 +40,11 @@ describe('OysterCard', () => {
   })
 
   it('throw an error if there are no founds on the card', () => {
-    const oysterCard = new OysterCard(0, new BusService(), new MetroService())
+    const oysterCard = new OysterCard(
+      1.99,
+      new BusService({ normalFare: 2 }),
+      new MetroService()
+    )
 
     expect(() => {
       oysterCard.touchTheReader({
