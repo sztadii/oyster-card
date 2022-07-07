@@ -1,13 +1,19 @@
 import {
   Transaction,
   Station,
+  MetroStationFares,
+  BusFares,
   stations,
   busFares,
   metroStationFares
 } from './config'
 
 export class BusService {
-  constructor(private fares = busFares) {}
+  private fares: BusFares
+
+  constructor(fares?: Partial<BusFares>) {
+    this.fares = { ...busFares, ...fares }
+  }
 
   public getTransactionCharge() {
     return this.fares.normalFare
@@ -15,7 +21,11 @@ export class BusService {
 }
 
 export class MetroService {
-  constructor(private fares = metroStationFares) {}
+  private fares: MetroStationFares
+
+  constructor(fares?: Partial<MetroStationFares>) {
+    this.fares = { ...metroStationFares, ...fares }
+  }
 
   public getTransactionCharge(
     transaction: Transaction,

@@ -1,6 +1,5 @@
 import { OysterCard } from './oyster-card'
 import { BusService, MetroService } from './services'
-import { metroStationFares } from './config'
 
 describe('OysterCard', () => {
   it('works for the following / requested trip', () => {
@@ -84,7 +83,6 @@ describe('OysterCard', () => {
       const oysterCard = new OysterCard(
         new BusService(),
         new MetroService({
-          ...metroStationFares,
           anywhereInZone1Fare
         })
       )
@@ -113,7 +111,6 @@ describe('OysterCard', () => {
       const oysterCard = new OysterCard(
         new BusService(),
         new MetroService({
-          ...metroStationFares,
           anyOneZoneOutsideZone1Fare
         })
       )
@@ -144,7 +141,6 @@ describe('OysterCard', () => {
       const oysterCard = new OysterCard(
         new BusService(),
         new MetroService({
-          ...metroStationFares,
           anyTwoZonesIncludingZone1Fare
         })
       )
@@ -175,7 +171,6 @@ describe('OysterCard', () => {
       const oysterCard = new OysterCard(
         new BusService(),
         new MetroService({
-          ...metroStationFares,
           anyTwoZonesExcludingZone1Fare
         })
       )
@@ -206,7 +201,6 @@ describe('OysterCard', () => {
       const oysterCard = new OysterCard(
         new BusService(),
         new MetroService({
-          ...metroStationFares,
           moreThanTwoZonesFare
         })
       )
@@ -269,7 +263,6 @@ describe('OysterCard', () => {
       const oysterCard = new OysterCard(
         new BusService(),
         new MetroService({
-          ...metroStationFares,
           maxFare
         })
       )
@@ -292,7 +285,6 @@ describe('OysterCard', () => {
       const oysterCard = new OysterCard(
         new BusService(),
         new MetroService({
-          ...metroStationFares,
           maxFare
         })
       )

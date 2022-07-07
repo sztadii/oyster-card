@@ -21,6 +21,8 @@ export const metroStationFares = {
 }
 
 export type Station = keyof typeof stations
+export type MetroStationFares = typeof metroStationFares
+export type BusFares = typeof busFares
 
 export interface Transaction {
   type: 'bus' | 'metro'
