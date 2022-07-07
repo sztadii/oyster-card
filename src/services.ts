@@ -4,7 +4,7 @@ import {
   stations,
   busFares,
   metroStationFares
-} from './types'
+} from './config'
 
 export class BusService {
   constructor(private fares = busFares) {}

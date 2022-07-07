@@ -1,4 +1,4 @@
-import { Transaction } from './types'
+import { Transaction } from './config'
 import { BusService, MetroService } from './services'
 
 export class OysterCard {

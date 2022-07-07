@@ -1,6 +1,6 @@
 import { OysterCard } from './oyster-card'
 import { BusService, MetroService } from './services'
-import { metroStationFares } from './types'
+import { metroStationFares } from './config'
 
 describe('OysterCard', () => {
   it('works for the following / requested trip', () => {
