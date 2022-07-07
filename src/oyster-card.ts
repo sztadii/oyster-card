@@ -2,13 +2,21 @@ import { Transaction } from './types'
 import { BusService, MetroService } from './services'
 
 export class OysterCard {
+  private balance = 0
   private lastTransaction?: Transaction
 
   constructor(
-    public balance: number,
     private busService: BusService,
     private metroService: MetroService
   ) {}
+
+  public getBalance() {
+    return this.balance
+  }
+
+  public increaseBalance(amount: number) {
+    this.balance += amount
+  }
 
   public touchTheReader(transaction: Transaction) {
     const transportationService = {

@@ -4,7 +4,9 @@ import { metroStationFares } from './types'
 
 describe('OysterCard', () => {
   it('works for the following / requested trip', () => {
-    const oysterCard = new OysterCard(30, new BusService(), new MetroService())
+    const oysterCard = new OysterCard(new BusService(), new MetroService())
+
+    oysterCard.increaseBalance(30)
 
     // 2.5 pounds fare
     oysterCard.touchTheReader({
@@ -36,15 +38,16 @@ describe('OysterCard', () => {
       gateType: 'exit'
     })
 
-    expect(oysterCard.balance).toBe(30 - 2.5 - 1.8 - 2)
+    expect(oysterCard.getBalance()).toBe(30 - 2.5 - 1.8 - 2)
   })
 
   it('throw an error if there are no founds on the card', () => {
     const oysterCard = new OysterCard(
-      1.99,
       new BusService({ normalFare: 2 }),
       new MetroService()
     )
+
+    oysterCard.increaseBalance(1.99)
 
     expect(() => {
       oysterCard.touchTheReader({
@@ -59,17 +62,18 @@ describe('OysterCard', () => {
     const normalFare = 3
 
     const oysterCard = new OysterCard(
-      initialBalance,
       new BusService({ normalFare }),
       new MetroService()
     )
+
+    oysterCard.increaseBalance(10)
 
     oysterCard.touchTheReader({
       type: 'bus',
       station: 'Hammersmith'
     })
 
-    expect(oysterCard.balance).toBe(initialBalance - normalFare)
+    expect(oysterCard.getBalance()).toBe(initialBalance - normalFare)
   })
 
   describe('works for a metro trip', () => {
@@ -78,13 +82,14 @@ describe('OysterCard', () => {
       const anywhereInZone1Fare = 10
 
       const oysterCard = new OysterCard(
-        initialBalance,
         new BusService(),
         new MetroService({
           ...metroStationFares,
           anywhereInZone1Fare
         })
       )
+
+      oysterCard.increaseBalance(initialBalance)
 
       oysterCard.touchTheReader({
         type: 'metro',
@@ -98,7 +103,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      expect(oysterCard.balance).toBe(initialBalance - anywhereInZone1Fare)
+      expect(oysterCard.getBalance()).toBe(initialBalance - anywhereInZone1Fare)
     })
 
     it('any one zone outside zone 1', () => {
@@ -106,13 +111,14 @@ describe('OysterCard', () => {
       const anyOneZoneOutsideZone1Fare = 10
 
       const oysterCard = new OysterCard(
-        initialBalance,
         new BusService(),
         new MetroService({
           ...metroStationFares,
           anyOneZoneOutsideZone1Fare
         })
       )
+
+      oysterCard.increaseBalance(initialBalance)
 
       oysterCard.touchTheReader({
         type: 'metro',
@@ -126,7 +132,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      expect(oysterCard.balance).toBe(
+      expect(oysterCard.getBalance()).toBe(
         initialBalance - anyOneZoneOutsideZone1Fare
       )
     })
@@ -136,13 +142,14 @@ describe('OysterCard', () => {
       const anyTwoZonesIncludingZone1Fare = 1
 
       const oysterCard = new OysterCard(
-        initialBalance,
         new BusService(),
         new MetroService({
           ...metroStationFares,
           anyTwoZonesIncludingZone1Fare
         })
       )
+
+      oysterCard.increaseBalance(initialBalance)
 
       oysterCard.touchTheReader({
         type: 'metro',
@@ -156,7 +163,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      expect(oysterCard.balance).toBe(
+      expect(oysterCard.getBalance()).toBe(
         initialBalance - anyTwoZonesIncludingZone1Fare
       )
     })
@@ -166,13 +173,14 @@ describe('OysterCard', () => {
       const anyTwoZonesExcludingZone1Fare = 4
 
       const oysterCard = new OysterCard(
-        initialBalance,
         new BusService(),
         new MetroService({
           ...metroStationFares,
           anyTwoZonesExcludingZone1Fare
         })
       )
+
+      oysterCard.increaseBalance(initialBalance)
 
       oysterCard.touchTheReader({
         type: 'metro',
@@ -186,7 +194,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      expect(oysterCard.balance).toBe(
+      expect(oysterCard.getBalance()).toBe(
         initialBalance - anyTwoZonesExcludingZone1Fare
       )
     })
@@ -196,13 +204,14 @@ describe('OysterCard', () => {
       const moreThanTwoZonesFare = 10
 
       const oysterCard = new OysterCard(
-        initialBalance,
         new BusService(),
         new MetroService({
           ...metroStationFares,
           moreThanTwoZonesFare
         })
       )
+
+      oysterCard.increaseBalance(initialBalance)
 
       oysterCard.touchTheReader({
         type: 'metro',
@@ -216,15 +225,15 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      expect(oysterCard.balance).toBe(initialBalance - moreThanTwoZonesFare)
+      expect(oysterCard.getBalance()).toBe(
+        initialBalance - moreThanTwoZonesFare
+      )
     })
 
     it('from Earl’s Court to Arsenal and back', () => {
-      const oysterCard = new OysterCard(
-        30,
-        new BusService(),
-        new MetroService()
-      )
+      const oysterCard = new OysterCard(new BusService(), new MetroService())
+
+      oysterCard.increaseBalance(30)
 
       oysterCard.touchTheReader({
         type: 'metro',
@@ -250,7 +259,7 @@ describe('OysterCard', () => {
         gateType: 'exit'
       })
 
-      expect(oysterCard.balance).toBe(26)
+      expect(oysterCard.getBalance()).toBe(26)
     })
 
     it('charge the maxFare when the user touches the reader only during entry', () => {
@@ -258,13 +267,14 @@ describe('OysterCard', () => {
       const maxFare = 40
 
       const oysterCard = new OysterCard(
-        initialBalance,
         new BusService(),
         new MetroService({
           ...metroStationFares,
           maxFare
         })
       )
+
+      oysterCard.increaseBalance(initialBalance)
 
       oysterCard.touchTheReader({
         type: 'metro',
@@ -272,7 +282,7 @@ describe('OysterCard', () => {
         gateType: 'entry'
       })
 
-      expect(oysterCard.balance).toBe(initialBalance - maxFare)
+      expect(oysterCard.getBalance()).toBe(initialBalance - maxFare)
     })
 
     it('charge the maxFare when the user touches the reader only during exit', () => {
@@ -280,7 +290,6 @@ describe('OysterCard', () => {
       const maxFare = 6
 
       const oysterCard = new OysterCard(
-        initialBalance,
         new BusService(),
         new MetroService({
           ...metroStationFares,
@@ -288,13 +297,15 @@ describe('OysterCard', () => {
         })
       )
 
+      oysterCard.increaseBalance(initialBalance)
+
       oysterCard.touchTheReader({
         type: 'metro',
         station: 'Arsenal',
         gateType: 'exit'
       })
 
-      expect(oysterCard.balance).toBe(initialBalance - maxFare)
+      expect(oysterCard.getBalance()).toBe(initialBalance - maxFare)
     })
   })
 })
