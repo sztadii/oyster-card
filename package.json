@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "test": "jest",
-    "format": "prettier --write \"{**/*,*}.{ts,json,md}\""
+    "test": "jest"
   },
   "keywords": [],
   "author": "sztadii",
