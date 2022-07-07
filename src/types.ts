@@ -8,15 +8,15 @@ export const stations = {
 }
 
 export const busFares = {
-  normal: 1.8
+  normalFare: 1.8
 }
 
 export const metroStationFares = {
-  anywhereInZone1: 2.5,
-  anyOneZoneOutsideZone1: 2,
-  anyTwoZonesIncludingZone1: 3,
-  anyTwoZonesExcludingZone1: 2.25,
-  moreThanTwoZones: 3.2,
+  anywhereInZone1Fare: 2.5,
+  anyOneZoneOutsideZone1Fare: 2,
+  anyTwoZonesIncludingZone1Fare: 3,
+  anyTwoZonesExcludingZone1Fare: 2.25,
+  moreThanTwoZonesFare: 3.2,
   maxFare: 3.2
 }
 

@@ -10,7 +10,7 @@ export class BusService {
   constructor(private fares = busFares) {}
 
   public getTransactionCharge() {
-    return this.fares.normal
+    return this.fares.normalFare
   }
 }
 
@@ -48,22 +48,26 @@ export class MetroService {
     const isOutsideFirstZone = zoneA !== 1 && zoneB !== 1
 
     if (visitedZonesDistance === 1 && isOutsideFirstZone) {
-      return this.getChargebackForTicket(this.fares.anyOneZoneOutsideZone1)
+      return this.getChargebackForTicket(this.fares.anyOneZoneOutsideZone1Fare)
     }
 
     if (visitedZonesDistance === 1) {
-      return this.getChargebackForTicket(this.fares.anywhereInZone1)
+      return this.getChargebackForTicket(this.fares.anywhereInZone1Fare)
     }
 
     if (visitedZonesDistance === 2 && isOutsideFirstZone) {
-      return this.getChargebackForTicket(this.fares.anyTwoZonesExcludingZone1)
+      return this.getChargebackForTicket(
+        this.fares.anyTwoZonesExcludingZone1Fare
+      )
     }
 
     if (visitedZonesDistance === 2) {
-      return this.getChargebackForTicket(this.fares.anyTwoZonesIncludingZone1)
+      return this.getChargebackForTicket(
+        this.fares.anyTwoZonesIncludingZone1Fare
+      )
     }
 
-    return this.getChargebackForTicket(this.fares.moreThanTwoZones)
+    return this.getChargebackForTicket(this.fares.moreThanTwoZonesFare)
   }
 
   private getStationZones(station: Station) {
