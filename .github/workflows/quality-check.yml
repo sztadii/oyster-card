@@ -13,7 +13,7 @@ jobs:
       - name: Setup required Node.JS version
         uses: actions/setup-node@v3
         with:
-          node-version: 14.17.1
+          node-version-file: '.nvmrc'
 
       - name: Dependency installation
         run: npm install
