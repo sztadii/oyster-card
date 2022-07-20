@@ -7,8 +7,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Checkout to the repository
+        uses: actions/checkout@v2
+
+      - name: Setup required Node.JS version
+        uses: actions/setup-node@v1
         with:
           node-version: 14.x
 
