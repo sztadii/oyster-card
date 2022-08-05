@@ -43,7 +43,7 @@ and taking the following trips, and then viewing the balance. <br />
 ## How to run the app
 
 Please install `node manager` from `https://github.com/tj/n` <br>
-Set up the node version ( specified in .nvmrc file ) by running
+Set up the node version ( specified in engines.node inside the package.json ) by running
 
 ```
 n auto
