@@ -8,7 +8,14 @@ import {
   metroStationFares
 } from './config'
 
-export class BusService {
+interface TransportService {
+  getTransactionCharge(
+    transaction?: Transaction,
+    lastTransaction?: Transaction
+  ): number
+}
+
+export class BusService implements TransportService {
   private fares: BusFares
 
   constructor(fares?: Partial<BusFares>) {
@@ -20,7 +27,7 @@ export class BusService {
   }
 }
 
-export class MetroService {
+export class MetroService implements TransportService {
   private fares: MetroStationFares
 
   constructor(fares?: Partial<MetroStationFares>) {
