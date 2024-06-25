@@ -1,6 +1,6 @@
 # oyster-card
 
-## The problem to solve
+## Task description
 
 You are required to model the following fare card system which is a limited version of London’s Oyster card system. <br/>
 At the end of the test, you should be able to demonstrate a user loading a card with £30, <br/>
@@ -40,23 +40,9 @@ and taking the following trips, and then viewing the balance. <br />
 | More than two zones (3+)       | £3.20 | From Wimbledon to Aldgate   |
 | Any bus journey                | £1.80 | Earl’s Court to Chelsea     |
 
-## How to run the app
-
-Please install `node manager` from `https://github.com/tj/n` <br>
-Set up the node version ( specified in engines.node inside the package.json ) by running
-
-```
-n auto
-```
-
-After that you can install dependencies by running
+## How to run
 
 ```
 npm install
-```
-
-Once you will download the dependencies then you can run the app by
-
-```
 npm test
 ```
